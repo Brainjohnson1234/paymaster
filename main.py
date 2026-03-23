@@ -407,7 +407,7 @@ async def annuler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # LANCEMENT
 # ============================================================
 if __name__ == "__main__":
-    app = ApplicationBuilder().token(TOKEN).build()
+    app = ApplicationBuilder().token(TOKEN).updater(None).build()
 
     conv = ConversationHandler(
         entry_points=[CommandHandler("start", start)],
