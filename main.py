@@ -689,7 +689,7 @@ def main():
 #lancement du serveur web en arriere-plan
 Thread(target=run_flask).start()
 logger.info("serveur web de secours démarré (port 10000)")
-    app = ApplicationBuilder().token(TOKEN).build()
+app = ApplicationBuilder().token(TOKEN).build()
 
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("start", start)],
