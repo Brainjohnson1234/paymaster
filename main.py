@@ -686,7 +686,7 @@ def main():
     if not TOKEN:
         logger.error("❌ BOT_TOKEN manquant ! Ajoutez-le dans les variables Railway.")
         return
-lancement du serveur web en arriere-plan
+#lancement du serveur web en arriere-plan
 Thread(target=run_flask).start()
 logger.info("serveur web de secours démarré (port 10000)")
     app = ApplicationBuilder().token(TOKEN).build()
