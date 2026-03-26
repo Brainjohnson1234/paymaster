@@ -2,6 +2,8 @@ import logging
 import os
 import json
 from datetime import datetime
+from threading import Thread
+from flask import Flask
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     ApplicationBuilder, CommandHandler, MessageHandler,
@@ -17,6 +19,14 @@ from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
 # ============================================================
 # ⚙️ CONFIGURATION — Modifie ces infos avec les tiennes
 # ============================================================
+web_app = Flask(_name_)
+@web_app.route('/')
+def health_check():
+    return "Paymaster Bot is Runing!",200
+def run_flask():
+    variable PORT(souvent 10000)
+    port = int(os.environ.get("PORT",10000))
+    web_app.run(host="0.0.0.0",port=port)
 TOKEN = os.environ.get("BOT_TOKEN")  # ✅ Sécurisé via variable Railway
 
 MON_NOM        = "Paymaster Cameroun"
@@ -675,8 +685,11 @@ async def annuler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ============================================================
 def main():
     if not TOKEN:
-        raise ValueError("❌ BOT_TOKEN manquant ! Ajoutez-le dans les variables Railway.")
-
+        logger.error("❌ BOT_TOKEN manquant ! Ajoutez-le dans les variables Railway.")
+        return
+lancement du serveur web en arriere-plan
+Thread(target=run_flask).start()
+logger.info("serveur web de secours démarré (port 10000)")
     app = ApplicationBuilder().token(TOKEN).build()
 
     conv_handler = ConversationHandler(
