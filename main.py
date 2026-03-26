@@ -19,7 +19,7 @@ from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
 # ============================================================
 # ⚙️ CONFIGURATION — Modifie ces infos avec les tiennes
 # ============================================================
-web_app = Flask(_name_)
+web_app = Flask(__name__)
 @web_app.route('/')
 def health_check():
     return "Paymaster Bot is Runing!",200
