@@ -24,7 +24,6 @@ web_app = Flask(_name_)
 def health_check():
     return "Paymaster Bot is Runing!",200
 def run_flask():
-    variable PORT(souvent 10000)
     port = int(os.environ.get("PORT",10000))
     web_app.run(host="0.0.0.0",port=port)
 TOKEN = os.environ.get("BOT_TOKEN")  # ✅ Sécurisé via variable Railway
